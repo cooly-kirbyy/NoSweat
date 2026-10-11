@@ -19,7 +19,11 @@ function showPromptNode(promptNodeIndex) {
 
     promptNode.choices.forEach(choice => {
         if (showChoice(choice)) {
-
+            const button = document.createElement('button')
+            button.innerText = choice.text
+            button.classList.add('btn')
+            button.addEventListener('click', () => selectChoice(choice))
+            choiceButtonsElement.appendChild(button)
         }
     })
 }
@@ -49,7 +53,14 @@ const promptNodes = [
         ]
     },
     {
-        id: 2
+        id: 2,
+        text: "Welcome to the second prompt! Just a placeholder.",
+        choices: [
+            {
+                text: "Cut the rope around wrist"
+                requiredState: ()
+            }
+        ]
     }
 ]
 

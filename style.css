@@ -27,5 +27,24 @@ body{
 .buttonlayout{
     display: flex;
     gap: 30px;
+}
 
+.btn{
+    background-color:rgb(56, 46, 17);
+    border: 1px solid rgb(34, 27, 7);
+    color:rgb(219, 173, 47);
+    padding: 8px 10px;
+    border-radius: 3px;
+}
+
+.btn:hover{
+    animation: buttonshake 2s infinite linear;
+}
+
+@keyframes buttonshake {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
+    75% { transform: rotate(-2deg); }
+    100% { transform: rotate(2deg); }
 }

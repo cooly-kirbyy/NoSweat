@@ -34,6 +34,9 @@ function showChoice(choice) {
 
 function selectChoice(choice) {
     const nextpromptNodeId = choice.nextText
+    if (nextpromptNodeId <= 0) {
+        return startGame()
+    }
     playerState = Object.assign(playerState, choice.setplayerState)
     showPromptNode(nextpromptNodeId)
 }
@@ -65,7 +68,17 @@ const promptNodes = [
             },
             {
                 text: "Fake being asleep",
-                nextText: 3
+                nextText: 4
+            }
+        ]
+    },
+    {
+        id: 4,
+        text: "Placeholder but I still don't know how you'd think that would work. You see the glint of a knife in the doorway.",
+        choices: [
+            {
+                text: "Restart, loser.", 
+                nextText: -1
             }
         ]
     }

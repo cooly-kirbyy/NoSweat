@@ -64,6 +64,7 @@ const promptNodes = [
             {
                 text: "Cut the rope around wrist",
                 requiredState: (currentPlayerState) => currentPlayerState.knife,
+                setplayerState: {freehand: true},
                 nextText: 3
             },
             {
@@ -73,12 +74,41 @@ const promptNodes = [
         ]
     },
     {
+        id: 3,
+        text: "Still a placeholder. Thank you for being patient",
+        choices: [
+            {
+                text: "Try and cut the rope from the rest of your body",
+                requiredState: (currentPlayerState) => currentPlayerState.knife,
+                nextText: 5
+            },
+            {
+                text: "Pretend to be asleep",
+                nextText: 5
+            }
+        ]
+    },
+    {
         id: 4,
-        text: "Placeholder but I still don't know how you'd think that would work. You see the glint of a knife in the doorway.",
+        text: "Placeholder but I still don't know how you'd think that would work.",
         choices: [
             {
                 text: "Restart, loser.", 
                 nextText: -1
+            }
+        ]
+    },
+    {
+        id: 5,
+        text: "Placeholder. You feel breath on top of your face",
+        choices: [
+            {
+                text: "Punch with your free hand",
+                requiredState: (currentPlayerState) => currentPlayerState.freehand,
+            },
+            {
+                text: "Keep eyes closed",
+                nextText: 4
             }
         ]
     }

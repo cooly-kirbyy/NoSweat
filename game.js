@@ -29,11 +29,13 @@ function showPromptNode(promptNodeIndex) {
 }
 
 function showChoice(choice) {
-    return true
+    return choice.requiredState == null || choice.requiredState(playerState)
 }
 
 function selectChoice(choice) {
-
+    const nextpromptNodeId = choice.nextText
+    playerState = Object.assign(playerState, choice.setplayerState)
+    showPromptNode(nextpromptNodeId)
 }
 
 const promptNodes = [
@@ -57,8 +59,13 @@ const promptNodes = [
         text: "Welcome to the second prompt! Just a placeholder.",
         choices: [
             {
-                text: "Cut the rope around wrist"
-                requiredState: ()
+                text: "Cut the rope around wrist",
+                requiredState: (currentPlayerState) => currentPlayerState.knife,
+                nextText: 3
+            },
+            {
+                text: "Fake being asleep",
+                nextText: 3
             }
         ]
     }

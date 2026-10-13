@@ -11,6 +11,14 @@ body{
     background-color: black;
 }
 
+h1 {
+    font-family: "Rubik Dirt", system-ui;
+    font-size: 200px;
+    font-weight: 200;
+    margin-top: -20px;
+    margin-bottom: 0.5rem;
+}
+
 .startcontainer{
     display: flex;
     flex-direction: column;

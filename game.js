@@ -1,7 +1,16 @@
 const storytextElement = document.getElementById('prompt') 
 const choiceButtonsElement = document.getElementById('choice-buttons')
 const linkElement = document.getElementById('gamelink')
-const nameInput = document.getElementById('input_name')
+const inputName = document.getElementById('input_name')
+
+if (linkElement && inputName) {
+    linkElement.addEventListener('click', function() {
+        const playerName = inputName.value.trim()
+        sessionStorage.setItem('playername', playerName)
+        console.log(playerName)
+
+    })
+}
 
 storytextElement.classList.add("textColor")
 

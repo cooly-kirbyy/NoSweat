@@ -9,13 +9,15 @@ body{
     height: 100vh;
     overflow: hidden;
     background-color: black;
+    z-index: 1;
+
 }
 
 h1 {
     font-family: "Rubik Dirt", system-ui;
-    font-size: 200px;
+    font-size: 160px;
     font-weight: 200;
-    margin-top: -20px;
+    margin-top: -5px;
     margin-bottom: 0.5rem;
 }
 
@@ -24,6 +26,27 @@ h1 {
     flex-direction: column;
     align-items: center;
     color:rgb(255, 255, 254);
+    z-index: 10;
+}
+
+.creditcontainer{
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    color:rgb(255, 255, 254);
+    opacity: 70%;
+    align-items:flex-end;
+    z-index: 2;
+
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding-right: 20px;
+}
+
+h3 {
+    margin-top: 0px;
+    margin-bottom: 2px;
 }
 
 a{

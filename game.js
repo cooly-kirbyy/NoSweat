@@ -12,7 +12,9 @@ if (linkElement && inputName) {
     })
 }
 
-storytextElement.classList.add("textColor")
+if (storytextElement) {
+    storytextElement.classList.add("textColor")
+}
 
 let playerState = {}
 
@@ -55,7 +57,7 @@ function selectChoice(choice) {
 const promptNodes = [
     {
         id: 1,
-        text: "This is just a placeholder. Choose an action.",
+        text: 'This is just a placeholder. Choose an action.',
         choices: [
             {
                 text: "Yell for help. Surely, someone has to be here.",
@@ -125,4 +127,6 @@ const promptNodes = [
     }
 ]
 
-startGame()
+if (storytextElement && choiceButtonsElement) {
+    startGame()
+}

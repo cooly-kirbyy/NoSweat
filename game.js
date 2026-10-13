@@ -1,5 +1,7 @@
 const storytextElement = document.getElementById('prompt') 
 const choiceButtonsElement = document.getElementById('choice-buttons')
+const linkElement = document.getElementById('gamelink')
+const nameInput = document.getElementById('input_name')
 
 storytextElement.classList.add("textColor")
 

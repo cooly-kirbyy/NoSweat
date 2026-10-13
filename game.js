@@ -1,8 +1,10 @@
+/*variables*/
 const storytextElement = document.getElementById('prompt') 
 const choiceButtonsElement = document.getElementById('choice-buttons')
 const linkElement = document.getElementById('gamelink')
 const inputName = document.getElementById('input_name')
 
+/*homepage name input*/
 if (linkElement && inputName) {
     linkElement.addEventListener('click', function() {
         const playerName = inputName.value.trim()
@@ -11,7 +13,7 @@ if (linkElement && inputName) {
 
     })
 }
-
+/*making sure storytext element is only used on gamehtml to not show error*/
 if (storytextElement) {
     storytextElement.classList.add("textColor")
 }
@@ -22,6 +24,8 @@ function startGame() {
     playerState = {}
     showPromptNode(1)
 }
+
+/*prompt/button node logic */
 
 function showPromptNode(promptNodeIndex) {
     const promptNode = promptNodes.find(promptNode => promptNode.id === promptNodeIndex)
@@ -41,26 +45,29 @@ function showPromptNode(promptNodeIndex) {
     })
 }
 
+/*preventing choices from being shown if do not have required state*/
 function showChoice(choice) {
     return choice.requiredState == null || choice.requiredState(playerState)
 }
 
-function selectChoice(choice) {
+function selectChoice(choice) {  /*restart*/
     const nextpromptNodeId = choice.nextText
     if (nextpromptNodeId <= 0) {
         return startGame()
-    }
-    playerState = Object.assign(playerState, choice.setplayerState)
+    } /*could be inccorect, changing playerstate */
+    playerState = Object.assign(playerState, choice.setplayerState) 
     showPromptNode(nextpromptNodeId)
 }
 
+/*establishing playername variable for game.html */
 const playerName = sessionStorage.getItem('playername') || 'Survivor'
 console.log(playerName)
 
+/* text prompt paths */
 const promptNodes = [
     {
         id: 1,
-        text: `This is just a placeholder. Choose an action, ${playerName}.`,
+        text: `This is just a placeholder. Choose an action, ${playerName}.`, /*backticks were used */
         choices: [
             {
                 text: "Yell for help. Surely, someone has to be here.",

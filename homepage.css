@@ -49,20 +49,26 @@ h3 {
     margin-bottom: 2px;
 }
 
-a{
+#gamelink{
     text-decoration: none;
     display: inline-block;
     color:rgb(255, 255, 254);
+    transition: transform 0.7s ease-out;
 }
 
-a:hover{
-    animation: wiggle 1.5s infinite linear;
+#gamelink:hover{
+    transform: scale(1.3);
+}
+
+#gamelink:hover span {
+    display: inline-block;
+    animation: wiggle 1.5s infinite ease-in-out;
 }
 
 @keyframes wiggle {
-    0% { transform: rotate(0deg);}
-    25% { transform: rotate(-2deg); scale: 1.5; }
-    50% { transform: rotate(2deg); scale: 1.5; }
-    75% { transform: rotate(-2deg); scale: 1.5; }
-    100% { transform: rotate(2deg); scale: 1.5; }
+    0% { transform: rotate(2deg);}
+    25% { transform: rotate(-2deg);}
+    50% { transform: rotate(2deg);}
+    75% { transform: rotate(-2deg);}
+    100% { transform: rotate(2deg);}
 }

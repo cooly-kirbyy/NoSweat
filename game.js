@@ -54,10 +54,13 @@ function selectChoice(choice) {
     showPromptNode(nextpromptNodeId)
 }
 
+const playerName = sessionStorage.getItem('playername') || 'Survivor'
+console.log(playerName)
+
 const promptNodes = [
     {
         id: 1,
-        text: 'This is just a placeholder. Choose an action.',
+        text: `This is just a placeholder. Choose an action, ${playerName}.`,
         choices: [
             {
                 text: "Yell for help. Surely, someone has to be here.",

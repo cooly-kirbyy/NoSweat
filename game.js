@@ -3,6 +3,7 @@ const storytextElement = document.getElementById('prompt')
 const choiceButtonsElement = document.getElementById('choice-buttons')
 const linkElement = document.getElementById('gamelink')
 const inputName = document.getElementById('input_name')
+const loadingElement = document.getElementById('loading-screen')
 
 /*homepage name input*/
 if (linkElement && inputName) {
@@ -13,6 +14,21 @@ if (linkElement && inputName) {
 
     })
 }
+
+/*loading screen */
+
+if (sessionStorage.getItem('loaderSeen') === 'true') {
+    loadingElement.style.display = 'none'
+} else {
+    setTimeout(() => {
+
+        if (loadingElement) {
+            loadingElement.classList.add('fade-out')
+        };
+        sessionStorage.setItem('loaderSeen', 'true')
+    }, 5000)
+}
+
 /*making sure storytext element is only used on gamehtml to not show error*/
 if (storytextElement) {
     storytextElement.classList.add("textColor")

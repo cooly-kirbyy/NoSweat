@@ -11,11 +11,17 @@ if (linkElement && inputName) {
         const playerName = inputName.value.trim()
         sessionStorage.setItem('playername', playerName)
         console.log(playerName)
-
     })
 }
 
 /*loading screen */
+
+/*reset the loading screen in console if needed using 
+ sessionStorage.removeItem('loaderSeen');
+location.reload();
+ */
+let loaderSeen = sessionStorage.getItem('loaderSeen') === 'true'
+console.log(`Loading seen: ${loaderSeen}`)
 
 if (sessionStorage.getItem('loaderSeen') === 'true') {
     loadingElement.style.display = 'none'
@@ -26,6 +32,10 @@ if (sessionStorage.getItem('loaderSeen') === 'true') {
             loadingElement.classList.add('fade-out')
         };
         sessionStorage.setItem('loaderSeen', 'true')
+
+        loaderSeen = true
+        console.log(`Loading seen: ${loaderSeen}`)
+
     }, 5000)
 }
 
@@ -77,7 +87,7 @@ function selectChoice(choice) {  /*restart*/
 
 /*establishing playername variable for game.html */
 const playerName = sessionStorage.getItem('playername') || 'Survivor'
-console.log(playerName)
+console.log(`Player Name: ${playerName}`)
 
 /* text prompt paths */
 const promptNodes = [

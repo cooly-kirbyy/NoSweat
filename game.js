@@ -5,6 +5,7 @@ const linkElement = document.getElementById('gamelink')
 const inputName = document.getElementById('input_name')
 const loadingElement = document.getElementById('loading-screen')
 
+/*seeing whether its pushing changes to the github main */
 
 /*homepage name input*/
 if (linkElement && inputName) {

@@ -5,6 +5,7 @@ const linkElement = document.getElementById('gamelink')
 const inputName = document.getElementById('input_name')
 const loadingElement = document.getElementById('loading-screen')
 
+
 /*homepage name input*/
 if (linkElement && inputName) {
     linkElement.addEventListener('click', function() {
@@ -45,10 +46,22 @@ if (storytextElement) {
 }
 
 let playerState = {}
+const backPackElement = document.getElementById('bp-content')
 
 function startGame() {
     playerState = {}
+    updateBackPack()
     showPromptNode(1)
+}
+
+/* making backpack display playerState items */
+
+function updateBackPack () {
+    const items = Object.keys(playerState).filter(
+        item => playerState[item] === true
+    )
+
+    backPackElement.innerText = items.length
 }
 
 /*prompt/button node logic */
@@ -69,6 +82,8 @@ function showPromptNode(promptNodeIndex) {
             choiceButtonsElement.appendChild(button)
         }
     })
+
+    updateBackPack()
 }
 
 /*preventing choices from being shown if do not have required state*/
@@ -162,6 +177,7 @@ const promptNodes = [
         ]
     }
 ]
+
 
 if (storytextElement && choiceButtonsElement) {
     startGame()

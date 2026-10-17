@@ -5,8 +5,6 @@ const linkElement = document.getElementById('gamelink')
 const inputName = document.getElementById('input_name')
 const loadingElement = document.getElementById('loading-screen')
 
-/*seeing whether its pushing changes to the github main */
-
 /*homepage name input*/
 if (linkElement && inputName) {
     linkElement.addEventListener('click', function() {
@@ -63,6 +61,11 @@ function updateBackPack () {
     )
 
     backPackElement.innerText = items.length
+    if (items.length > 0) {
+        backPackElement.innerText = `${items.join(", ")}`
+    } else {
+        backPackElement.innerText = "You have nothing here."
+    }
 }
 
 /*prompt/button node logic */

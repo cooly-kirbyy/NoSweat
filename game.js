@@ -36,7 +36,7 @@ if (sessionStorage.getItem('loaderSeen') === 'true') {
         loaderSeen = true
         console.log(`Loading seen: ${loaderSeen}`)
 
-    }, 5000)
+    }, 20000)
 }
 
 /*making sure storytext element is only used on gamehtml to not show error*/
@@ -53,7 +53,7 @@ function startGame() {
     showPromptNode(1)
 }
 
-/* making backpack display playerState items */
+/*backpack system */
 
 function updateBackPack () {
     const items = Object.keys(playerState).filter(

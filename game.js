@@ -4,6 +4,7 @@ const choiceButtonsElement = document.getElementById('choice-buttons')
 const linkElement = document.getElementById('gamelink')
 const inputName = document.getElementById('input_name')
 const loadingElement = document.getElementById('loading-screen')
+const backGroundElement = document.getElementById('game-bg')
 
 /*homepage name input*/
 if (linkElement && inputName) {
@@ -71,8 +72,11 @@ function updateBackPack () {
 /*prompt/button node logic */
 
 function showPromptNode(promptNodeIndex) {
+
     const promptNode = promptNodes.find(promptNode => promptNode.id === promptNodeIndex)
     storytextElement.innerText = promptNode.text
+    backGroundElement.src = promptNode.image
+
     while (choiceButtonsElement.firstChild) {
         choiceButtonsElement.removeChild(choiceButtonsElement.firstChild)
     }
@@ -112,7 +116,10 @@ console.log(`Player Name: ${playerName}`)
 const promptNodes = [
     {
         id: 1,
-        text: `This is just a placeholder. Choose an action, ${playerName}.`, /*backticks were used */
+        image: "assets/backgrounds/game-bg.png",
+        text: `You stirred in your sleep, stomach growling. BANG! You wake up in a sweat, clutching at your
+        side for your flashlight. Shakily shining the light towards the door in front of you, you notice it's open... 
+        It creaks on the hinges as light creeps in. Jordan's gone. `, /*backticks were used */
         choices: [
             {
                 text: "Yell for help. Surely, someone has to be here.",
@@ -127,6 +134,7 @@ const promptNodes = [
     },
     {
         id: 2,
+        image: "assets/backgrounds/node2bg.png",
         text: "Welcome to the second prompt! Just a placeholder.",
         choices: [
             {
@@ -143,6 +151,7 @@ const promptNodes = [
     },
     {
         id: 3,
+        image: "assets/backgrounds/node3bg.png",
         text: "Still a placeholder. Thank you for being patient",
         choices: [
             {

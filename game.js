@@ -117,17 +117,20 @@ const promptNodes = [
     {
         id: 1,
         image: "assets/backgrounds/game-bg.png",
-        text: `You stirred in your sleep, stomach growling. BANG! You wake up in a sweat, clutching at your
-        side for your flashlight. Shakily shining the light towards the door in front of you, you notice it's open... 
-        It creaks on the hinges as light creeps in. Jordan's gone. `, /*backticks were used */
+        text: `You stirred in your sleep, stomach growling. Sleeping on a thin medical cot couldn't be said to be the most comfortable. 
+        Groans echoed off of the walls of the hallway outside; the whole building almost seemed to have life. As sleep finally seemed 
+        to let you go, you tried sitting up, still disoriented. CLANK! You look down. You're handcuffed to the bars... `, /*backticks were used */
         choices: [
             {
-                text: "Yell for help. Surely, someone has to be here.",
-                nextText: 2
+                text: `The room is too dark to see. Reach in your backpack
+                for your flashlight and try to scan the room? That'd take time,
+                though.`,
+                nextText: 2,
+                setplayerState: { Flashlight: true},
             },
             {
-                text: "Reach in your pocket",
-                setplayerState: { knife: true},
+                text: `It'd be noisy but you could just...kick it right?
+                Surely, something has to give.`,
                 nextText: 2
             }
         ]
@@ -139,7 +142,7 @@ const promptNodes = [
         choices: [
             {
                 text: "Cut the rope around wrist",
-                requiredState: (currentPlayerState) => currentPlayerState.knife,
+                requiredState: (currentPlayerState) => currentPlayerState.Knife,
                 setplayerState: {freehand: true},
                 nextText: 3
             },

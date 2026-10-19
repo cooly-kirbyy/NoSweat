@@ -5,6 +5,7 @@ const linkElement = document.getElementById('gamelink')
 const inputName = document.getElementById('input_name')
 const loadingElement = document.getElementById('loading-screen')
 const backGroundElement = document.getElementById('game-bg')
+const skipElement = document.getElementById('skip-btn')
 
 /*homepage name input*/
 if (linkElement && inputName) {
@@ -24,6 +25,7 @@ location.reload();
 let loaderSeen = sessionStorage.getItem('loaderSeen') === 'true'
 console.log(`Loading seen: ${loaderSeen}`)
 
+
 if (sessionStorage.getItem('loaderSeen') === 'true') {
     loadingElement.style.display = 'none'
 } else {
@@ -32,13 +34,21 @@ if (sessionStorage.getItem('loaderSeen') === 'true') {
         if (loadingElement) {
             loadingElement.classList.add('fade-out')
         };
+
         sessionStorage.setItem('loaderSeen', 'true')
 
         loaderSeen = true
         console.log(`Loading seen: ${loaderSeen}`)
 
-    }, 20000)
-}
+    }, 19000)
+} 
+
+skipElement.addEventListener('click', function () {
+    loadingElement.classList.add('fade-out')
+    sessionStorage.setItem('loaderSeen', 'true')
+})
+
+
 
 /*making sure storytext element is only used on gamehtml to not show error*/
 if (storytextElement) {

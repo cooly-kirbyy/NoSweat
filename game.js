@@ -6,6 +6,8 @@ const inputName = document.getElementById('input_name')
 const loadingElement = document.getElementById('loading-screen')
 const backGroundElement = document.getElementById('game-bg')
 const skipElement = document.getElementById('skip-btn')
+const backPackElement = document.getElementById('bp-content')
+const statusElement = document.getElementById('status-content')
 
 /*homepage name input*/
 if (linkElement && inputName) {
@@ -55,11 +57,10 @@ if (storytextElement) {
     storytextElement.classList.add("textColor")
 }
 
-let playerState = {}
-const backPackElement = document.getElementById('bp-content')
+let playerItems = {}
 
 function startGame() {
-    playerState = {}
+    playerItems = {}
     updateBackPack()
     showPromptNode(1)
 }
@@ -67,8 +68,8 @@ function startGame() {
 /*backpack system */
 
 function updateBackPack () {
-    const items = Object.keys(playerState).filter(
-        item => playerState[item] === true
+    const items = Object.keys(playerItems).filter(
+        item => playerItems[item] === true
     )
 
     backPackElement.innerText = items.length
@@ -106,15 +107,15 @@ function showPromptNode(promptNodeIndex) {
 
 /*preventing choices from being shown if do not have required state*/
 function showChoice(choice) {
-    return choice.requiredState == null || choice.requiredState(playerState)
+    return choice.requiredState == null || choice.requiredState(playerItems)
 }
 
 function selectChoice(choice) {  /*restart*/
     const nextpromptNodeId = choice.nextText
     if (nextpromptNodeId <= 0) {
         return startGame()
-    } /*could be inccorect, changing playerstate */
-    playerState = Object.assign(playerState, choice.setplayerState) 
+    } /*could be inccorect, changing playerItems */
+    playerItems = Object.assign(playerItems, choice.setplayerItems) 
     showPromptNode(nextpromptNodeId)
 }
 
@@ -136,7 +137,7 @@ const promptNodes = [
                 for your flashlight and try to scan the room? That'd take time,
                 though.`,
                 nextText: 2,
-                setplayerState: { Flashlight: true},
+                setplayerItems: { Flashlight: true},
             },
             {
                 text: `It'd be noisy but you could just...kick it right?
@@ -152,8 +153,8 @@ const promptNodes = [
         choices: [
             {
                 text: "Cut the rope around wrist",
-                requiredState: (currentPlayerState) => currentPlayerState.Knife,
-                setplayerState: {freehand: true},
+                requiredState: (currentPlayerItems) => currentPlayerItems.Knife,
+                setplayerItems: {freehand: true},
                 nextText: 3
             },
             {
@@ -169,7 +170,7 @@ const promptNodes = [
         choices: [
             {
                 text: "Try and cut the rope from the rest of your body",
-                requiredState: (currentPlayerState) => currentPlayerState.knife,
+                requiredState: (currentPlayerItems) => currentPlayerItems.knife,
                 nextText: 5
             },
             {
@@ -194,7 +195,7 @@ const promptNodes = [
         choices: [
             {
                 text: "Punch with your free hand",
-                requiredState: (currentPlayerState) => currentPlayerState.freehand,
+                requiredState: (currentPlayerItems) => currentPlayerItems.freehand,
             },
             {
                 text: "Keep eyes closed",

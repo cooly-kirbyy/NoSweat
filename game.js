@@ -7,7 +7,6 @@ const loadingElement = document.getElementById('loading-screen')
 const backGroundElement = document.getElementById('game-bg')
 const skipElement = document.getElementById('skip-btn')
 const backPackElement = document.getElementById('bp-content')
-const statusElement = document.getElementById('status-content')
 
 /*homepage name input*/
 if (linkElement && inputName) {
@@ -50,9 +49,8 @@ skipElement.addEventListener('click', function () {
     sessionStorage.setItem('loaderSeen', 'true')
 })
 
-
-
 /*making sure storytext element is only used on gamehtml to not show error*/
+
 if (storytextElement) {
     storytextElement.classList.add("textColor")
 }

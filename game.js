@@ -1,12 +1,16 @@
-/*variables*/
+/*gamevariables*/
 const storytextElement = document.getElementById('prompt') 
 const choiceButtonsElement = document.getElementById('choice-buttons')
+const backGroundElement = document.getElementById('game-bg')
+const backPackElement = document.getElementById('bp-content')
+const hitPoints = document.querySelectorAll('.hearticon')
+const maxPlayerHealth = hitPoints.length
+
+/*hp variables essentially, not main game */
 const linkElement = document.getElementById('gamelink')
 const inputName = document.getElementById('input_name')
 const loadingElement = document.getElementById('loading-screen')
-const backGroundElement = document.getElementById('game-bg')
 const skipElement = document.getElementById('skip-btn')
-const backPackElement = document.getElementById('bp-content')
 
 /*homepage name input*/
 if (linkElement && inputName) {
@@ -55,12 +59,17 @@ if (storytextElement) {
     storytextElement.classList.add("textColor")
 }
 
+/*starting function and statuses */
+
 let playerItems = {}
+let currentPlayerHealth = maxPlayerHealth
 
 function startGame() {
     playerItems = {}
+    currentPlayerHealth = maxPlayerHealth
     updateBackPack()
     showPromptNode(1)
+    updateHealthCount()
 }
 
 /*backpack system */
@@ -76,6 +85,18 @@ function updateBackPack () {
     } else {
         backPackElement.innerText = "You have nothing here."
     }
+}
+
+/*health system*/
+
+function updateHealthCount () {
+    const damage = Number
+
+    if (currentPlayerHealth < 1) {
+        return startGame()
+    }
+
+    console.log(currentPlayerHealth)
 }
 
 /*prompt/button node logic */

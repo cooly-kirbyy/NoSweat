@@ -122,9 +122,7 @@ function selectChoice(choice) {  /*restart*/
         return startGame()
     } 
     
-    if (!updateHealthCount(choice)){
-        return
-    }
+    updateHealthCount(choice) /*allowing damage to be set in choices */
     
     /*could be inccorect, changing playerItems */
     playerItems = Object.assign(playerItems, choice.setplayerItems) 
@@ -135,16 +133,15 @@ function selectChoice(choice) {  /*restart*/
 
 function updateHealthCount(choice) {
     const healthLoss = choice.damage || 0
+
     if (healthLoss < 0) {
-        return true
+        return
     }
     currentPlayerHealth = (currentPlayerHealth -  healthLoss)
     if (currentPlayerHealth <= 0) {
         return startGame()
     }
-
     console.log(`Player health: ${currentPlayerHealth}`)
-    return true
 }
 
 /*establishing playername variable for game.html */

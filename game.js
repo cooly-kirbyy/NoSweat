@@ -5,12 +5,15 @@ const backGroundElement = document.getElementById('game-bg')
 const backPackElement = document.getElementById('bp-content')
 const hitPoints = document.querySelectorAll('.hearticon')
 const maxPlayerHealth = hitPoints.length
+const tempHeal = document.getElementById('heal-testing')
 
 /*hp variables essentially, not main game */
 const linkElement = document.getElementById('gamelink')
 const inputName = document.getElementById('input_name')
 const loadingElement = document.getElementById('loading-screen')
 const skipElement = document.getElementById('skip-btn')
+
+
 
 /*homepage name input*/
 if (linkElement && inputName) {
@@ -20,6 +23,9 @@ if (linkElement && inputName) {
         console.log(playerName)
     })
 }
+
+
+
 
 /*loading screen */
 
@@ -53,14 +59,14 @@ skipElement.addEventListener('click', function () {
     sessionStorage.setItem('loaderSeen', 'true')
 })
 
-/*making sure storytext element is only used on gamehtml to not show error*/
+if (storytextElement) { /*making sure storytext element is only used on gamehtml to not show error*/
 
-if (storytextElement) {
     storytextElement.classList.add("textColor")
 }
 
-/*starting function and statuses */
 
+
+/*starting function and statuses */
 let playerItems = {}
 let currentPlayerHealth = maxPlayerHealth
 
@@ -72,8 +78,9 @@ function startGame() {
     updateHeartGraphics()
 }
 
-/*backpack system */
 
+
+/*backpack system */
 function updateBackPack () {
     const items = Object.keys(playerItems).filter(
         item => playerItems[item] === true
@@ -87,8 +94,9 @@ function updateBackPack () {
     }
 }
 
-/*prompt/button node logic */
 
+
+/*prompt/button node logic */
 function showPromptNode(promptNodeIndex) {
 
     const promptNode = promptNodes.find(promptNode => promptNode.id === promptNodeIndex)
@@ -112,6 +120,8 @@ function showPromptNode(promptNodeIndex) {
     updateBackPack()
 }
 
+
+
 /*preventing choices from being shown if do not have required state*/
 function showChoice(choice) {
     return choice.requiredState == null || choice.requiredState(playerItems)
@@ -130,6 +140,9 @@ function selectChoice(choice) {  /*restart*/
     showPromptNode(nextpromptNodeId)
 }
 
+
+
+
 /*health system */
 
 function updateHealthCount(choice) {
@@ -142,17 +155,25 @@ function updateHealthCount(choice) {
     if (currentPlayerHealth <= 0) {
         return startGame()
     }
+
     updateHeartGraphics()
     console.log(`Player health: ${currentPlayerHealth}`)
 }
 
-function updateHeartGraphics() {
+function updateHeartGraphics() { /*updating the heart icons */
         hitPoints.forEach((heart, index) => {
             heart.classList.toggle('hit', index >= currentPlayerHealth)
         })
 }
 
+tempHeal.addEventListener('click', function healing() {  /*adding bandage system*/
+    currentPlayerHealth = Math.min(currentPlayerHealth + 1, maxPlayerHealth)
+    updateHeartGraphics()
+    console.log('Heal was clicked')
+})
+
 /*establishing playername variable for game.html */
+
 const playerName = sessionStorage.getItem('playername') || 'Survivor'
 console.log(`Player Name: ${playerName}`)
 

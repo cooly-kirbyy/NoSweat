@@ -69,7 +69,6 @@ function startGame() {
     currentPlayerHealth = maxPlayerHealth
     updateBackPack()
     showPromptNode(1)
-    updateHealthCount()
 }
 
 /*backpack system */
@@ -85,18 +84,6 @@ function updateBackPack () {
     } else {
         backPackElement.innerText = "You have nothing here."
     }
-}
-
-/*health system*/
-
-function updateHealthCount () {
-    const damage = Number
-
-    if (currentPlayerHealth < 1) {
-        return startGame()
-    }
-
-    console.log(currentPlayerHealth)
 }
 
 /*prompt/button node logic */
@@ -133,9 +120,31 @@ function selectChoice(choice) {  /*restart*/
     const nextpromptNodeId = choice.nextText
     if (nextpromptNodeId <= 0) {
         return startGame()
-    } /*could be inccorect, changing playerItems */
+    } 
+    
+    if (!updateHealthCount(choice)){
+        return
+    }
+    
+    /*could be inccorect, changing playerItems */
     playerItems = Object.assign(playerItems, choice.setplayerItems) 
     showPromptNode(nextpromptNodeId)
+}
+
+/*health system */
+
+function updateHealthCount(choice) {
+    const healthLoss = choice.damage || 0
+    if (healthLoss < 0) {
+        return true
+    }
+    currentPlayerHealth = (currentPlayerHealth -  healthLoss)
+    if (currentPlayerHealth <= 0) {
+        return startGame()
+    }
+
+    console.log(`Player health: ${currentPlayerHealth}`)
+    return true
 }
 
 /*establishing playername variable for game.html */
@@ -161,6 +170,7 @@ const promptNodes = [
             {
                 text: `It'd be noisy but you could just...kick it right?
                 Surely, something has to give.`,
+                damage: 3,
                 nextText: 2
             }
         ]

@@ -69,6 +69,7 @@ function startGame() {
     currentPlayerHealth = maxPlayerHealth
     updateBackPack()
     showPromptNode(1)
+    updateHeartGraphics()
 }
 
 /*backpack system */
@@ -141,7 +142,14 @@ function updateHealthCount(choice) {
     if (currentPlayerHealth <= 0) {
         return startGame()
     }
+    updateHeartGraphics()
     console.log(`Player health: ${currentPlayerHealth}`)
+}
+
+function updateHeartGraphics() {
+        hitPoints.forEach((heart, index) => {
+            heart.classList.toggle('hit', index >= currentPlayerHealth)
+        })
 }
 
 /*establishing playername variable for game.html */
@@ -167,7 +175,7 @@ const promptNodes = [
             {
                 text: `It'd be noisy but you could just...kick it right?
                 Surely, something has to give.`,
-                damage: 3,
+                damage: 1,
                 nextText: 2
             }
         ]

@@ -26,7 +26,6 @@ if (linkElement && inputName) {
 
 
 
-
 /*loading screen */
 
 /*reset the loading screen in console if needed using 
@@ -157,16 +156,19 @@ function updateHealthCount(choice) {
     console.log(`Player health: ${currentPlayerHealth}`)
 }
 
+
 function updateHeartGraphics() { /*updating the heart icons */
         hitPoints.forEach((heart, index) => {
             heart.classList.toggle('hit', index >= currentPlayerHealth)
         })
 }
 
+
 tempHeal.addEventListener('click', function healing() { /*adding bandage system*/
     const items = Object.keys(playerItems).filter(
         item => playerItems[item] === true
     )  
+
     if (items == 'Bandage') {
         currentPlayerHealth = Math.min(currentPlayerHealth + 1, maxPlayerHealth)
         updateHeartGraphics()
@@ -230,8 +232,7 @@ const promptNodes = [
         choices: [
             {
                 text: "Cut the rope around wrist",
-                requiredState: (currentPlayerItems) => currentPlayerItems.Knife,
-                setplayerItems: {freehand: true},
+                setplayerItems: { Bandage: true},
                 nextText: 3
             },
             {

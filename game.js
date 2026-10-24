@@ -126,7 +126,6 @@ function showPromptNode(promptNodeIndex) {
 function showChoice(choice) {
     return choice.requiredState == null || choice.requiredState(playerItems)
 }
-
 function selectChoice(choice) {  /*restart*/
     const nextpromptNodeId = choice.nextText
     if (nextpromptNodeId <= 0) {
@@ -142,9 +141,7 @@ function selectChoice(choice) {  /*restart*/
 
 
 
-
 /*health system */
-
 function updateHealthCount(choice) {
     const healthLoss = choice.damage || 0
 
@@ -166,16 +163,27 @@ function updateHeartGraphics() { /*updating the heart icons */
         })
 }
 
-tempHeal.addEventListener('click', function healing() {  /*adding bandage system*/
+tempHeal.addEventListener('click', function healing() { /*adding bandage system*/
+    const items = Object.keys(playerItems).filter(
+        item => playerItems[item] === true
+    )  
+    if (items == 'Bandage') {
     currentPlayerHealth = Math.min(currentPlayerHealth + 1, maxPlayerHealth)
     updateHeartGraphics()
     console.log('Heal was clicked')
+    }
+    else {
+        return
+    }
 })
 
-/*establishing playername variable for game.html */
 
+
+/*establishing playername variable for game.html */
 const playerName = sessionStorage.getItem('playername') || 'Survivor'
 console.log(`Player Name: ${playerName}`)
+
+
 
 /* text prompt paths */
 const promptNodes = [
@@ -191,12 +199,14 @@ const promptNodes = [
                 for your flashlight and try to scan the room? That'd take time,
                 though.`,
                 nextText: 2,
+                damage: 1,
                 setplayerItems: { Flashlight: true},
             },
             {
                 text: `It'd be noisy but you could just...kick it right?
                 Surely, something has to give.`,
                 damage: 1,
+                setplayerItems: { Bandage: true},
                 nextText: 2
             }
         ]

@@ -171,12 +171,19 @@ tempHeal.addEventListener('click', function healing() { /*adding bandage system*
         currentPlayerHealth = Math.min(currentPlayerHealth + 1, maxPlayerHealth)
         updateHeartGraphics()
         console.log('Heal was clicked')
+        console.log(`Player health: ${currentPlayerHealth}`)
+        delete playerItems['Bandage']
+        updateBackPack()
     }
+
     if (items == 'Medkit') {
         currentPlayerHealth = Math.min(currentPlayerHealth + 3, maxPlayerHealth)
         updateHeartGraphics()
         console.log('Heal was clicked')
-    }
+        console.log(`Player health: ${currentPlayerHealth}`)
+        delete playerItems['Medkit']
+        updateBackPack()
+        }
     else {
         return
     }

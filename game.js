@@ -168,9 +168,14 @@ tempHeal.addEventListener('click', function healing() { /*adding bandage system*
         item => playerItems[item] === true
     )  
     if (items == 'Bandage') {
-    currentPlayerHealth = Math.min(currentPlayerHealth + 1, maxPlayerHealth)
-    updateHeartGraphics()
-    console.log('Heal was clicked')
+        currentPlayerHealth = Math.min(currentPlayerHealth + 1, maxPlayerHealth)
+        updateHeartGraphics()
+        console.log('Heal was clicked')
+    }
+    if (items == 'Medkit') {
+        currentPlayerHealth = Math.min(currentPlayerHealth + 3, maxPlayerHealth)
+        updateHeartGraphics()
+        console.log('Heal was clicked')
     }
     else {
         return
@@ -199,13 +204,13 @@ const promptNodes = [
                 for your flashlight and try to scan the room? That'd take time,
                 though.`,
                 nextText: 2,
-                damage: 1,
-                setplayerItems: { Flashlight: true},
+                damage: 4,
+                setplayerItems: { Medkit: true},
             },
             {
                 text: `It'd be noisy but you could just...kick it right?
                 Surely, something has to give.`,
-                damage: 1,
+                damage: 4,
                 setplayerItems: { Bandage: true},
                 nextText: 2
             }
